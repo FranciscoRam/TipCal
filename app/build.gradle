@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+def dbflow_version = "4.0.0-beta1"
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
@@ -27,10 +29,11 @@ dependencies {
     })
     compile 'com.jakewharton:butterknife:7.0.1'
 
-    apt "com.github.Raizlabs.DBFlow:dbflow-processor:$root.Project.ext.dbflow_version"
-    compile "com.github.Raizlabs.DBFlow:dbflow-core:$root.Project.ext.dbflow_version"
-    compile "com.github.Raizlabs.DBFlow:dbflow:$root.Project.ext.dbflow_version"
-
+   // apt "com.github.Raizlabs.DBFlow:dbflow-processor:$root.Project.ext.dbflow_version"
+    apt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+    // use kapt for kotlin apt
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
+    compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
 
     compile 'com.android.support:recyclerview-v7:25.0.0'
     compile 'com.android.support:appcompat-v7:25.0.0'

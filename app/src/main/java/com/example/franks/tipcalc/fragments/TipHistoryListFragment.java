@@ -16,7 +16,7 @@ import com.example.franks.tipcalc.R;
 import com.example.franks.tipcalc.activities.activity_detail;
 import com.example.franks.tipcalc.adapters.OnItemClickListener;
 import com.example.franks.tipcalc.adapters.TipAdapter;
-import com.example.franks.tipcalc.models.TipRecord;
+import com.example.franks.tipcalc.entity.TipRecord;
 
 public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener,OnItemClickListener {
     @Bind(R.id.recyclerView)

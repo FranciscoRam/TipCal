@@ -13,7 +13,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.example.franks.tipcalc.R;
-import com.example.franks.tipcalc.models.TipRecord;
+import com.example.franks.tipcalc.entity.TipRecord;
 
 public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
 

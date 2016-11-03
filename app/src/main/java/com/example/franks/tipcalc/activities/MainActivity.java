@@ -23,7 +23,7 @@ import com.example.franks.tipcalc.R;
 import com.example.franks.tipcalc.TipCalcApp;
 import com.example.franks.tipcalc.fragments.TipHistoryListFragment;
 import com.example.franks.tipcalc.fragments.TipHistoryListFragmentListener;
-import com.example.franks.tipcalc.models.TipRecord;
+import com.example.franks.tipcalc.entity.TipRecord;
 
 public class MainActivity extends AppCompatActivity {
 

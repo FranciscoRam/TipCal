@@ -1,6 +1,6 @@
 package com.example.franks.tipcalc.fragments;
 
-import com.example.franks.tipcalc.models.TipRecord;
+import com.example.franks.tipcalc.entity.TipRecord;
 
 
 public interface TipHistoryListFragmentListener {
