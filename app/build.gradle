@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
@@ -25,6 +26,12 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.jakewharton:butterknife:7.0.1'
+
+    apt "com.github.Raizlabs.DBFlow:dbflow-processor:$root.Project.ext.dbflow_version"
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:$root.Project.ext.dbflow_version"
+    compile "com.github.Raizlabs.DBFlow:dbflow:$root.Project.ext.dbflow_version"
+
+
     compile 'com.android.support:recyclerview-v7:25.0.0'
     compile 'com.android.support:appcompat-v7:25.0.0'
     testCompile 'junit:junit:4.12'
