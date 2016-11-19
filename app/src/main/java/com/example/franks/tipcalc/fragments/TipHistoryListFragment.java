@@ -17,6 +17,7 @@ import com.example.franks.tipcalc.activities.activity_detail;
 import com.example.franks.tipcalc.adapters.OnItemClickListener;
 import com.example.franks.tipcalc.adapters.TipAdapter;
 import com.example.franks.tipcalc.entity.TipRecord;
+import com.example.franks.tipcalc.utils.TipUtils;
 
 public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener,OnItemClickListener {
     @Bind(R.id.recyclerView)
@@ -52,6 +53,11 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
     }
 
     @Override
+    public void initList() {
+        adapter.init();
+    }
+
+    @Override
     public void addToList(TipRecord record) {
         adapter.add(record);
     }
@@ -64,10 +70,10 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
     @Override
     public void onItemClick(TipRecord tipRecord) {
         Intent intent = new Intent(getActivity(),activity_detail.class);
-        intent.putExtra("Total",tipRecord.getBillFormated());
-        intent.putExtra("Propina",tipRecord.getTipFormated());
-        intent.putExtra("Fecha", tipRecord.getDateFormated());
-        startActivity(intent);
+        intent.putExtra(activity_detail.TIP_KEY, TipUtils.getTip(tipRecord) );
+        intent.putExtra(activity_detail.BILL_TOTAL_KEY, tipRecord.getBill());
+        intent.putExtra(activity_detail.DATE_KEY, TipUtils.getDateFormated(tipRecord) );
 
+        startActivity(intent);
     }
 }

@@ -1,17 +1,19 @@
 package com.example.franks.tipcalc.entity;
 
-import com.example.franks.tipcalc.db.TipsDatabase;
+
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.example.franks.tipcalc.db.TipsDatabase;
+
+
 @Table(database = TipsDatabase.class)
-
-public class TipRecord {
-
+public class TipRecord extends BaseModel {
     @PrimaryKey(autoincrement = true)
     private int id;
 
@@ -23,7 +25,6 @@ public class TipRecord {
 
     @Column
     private Date timestamp;
-
 
     public int getId() {
         return id;
@@ -56,22 +57,5 @@ public class TipRecord {
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
-
-    public double getTip(){
-        return bill*(tipPercentage/100d);
-    }
-    public String getTipFormated(){
-        double b = bill*(tipPercentage/100d);
-        return String.valueOf(b);
-    }
-    public String getBillFormated(){
-
-        return String.valueOf(bill);
-    }
-    public String getDateFormated(){
-        SimpleDateFormat simpleDateFormat =new SimpleDateFormat("MM dd, yyyy HH:mm");
-        return simpleDateFormat.format(timestamp);
-    }
-
 
 }

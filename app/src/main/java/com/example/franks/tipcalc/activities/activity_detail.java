@@ -18,6 +18,9 @@ public class activity_detail extends AppCompatActivity{
     @Bind(R.id.txtFecha)
     TextView txtFecha;
 
+    public final static String TIP_KEY = "tip";
+    public final static String DATE_KEY = "timestamp";
+    public final static String BILL_TOTAL_KEY = "total";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

@@ -6,14 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.example.franks.tipcalc.R;
 import com.example.franks.tipcalc.entity.TipRecord;
+import com.example.franks.tipcalc.utils.TipUtils;
 
 public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
 
@@ -44,7 +48,8 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TipRecord element=dataset.get(position);
-        String strTip = String.format(context.getString(R.string.global_message_tip, element.getTip()));
+        String strTip = String.format(context.getString(R.string.global_message_tip), TipUtils.getTip(element) );
+
         holder.txtContent.setText(strTip);
         holder.setOnItemClickListener(element,onItemClickListener);
     }
@@ -55,13 +60,19 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
     }
 
     public void  add(TipRecord record){
-        dataset.add(0,record);
+        record.save();
+        dataset = new Select().from(TipRecord.class).queryList();
         notifyDataSetChanged();
     }
 
     public void clear() {
         dataset.clear();
         notifyDataSetChanged();
+    }
+
+    public void init() {
+
+        dataset=new Select().from(TipRecord.class).queryList();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
