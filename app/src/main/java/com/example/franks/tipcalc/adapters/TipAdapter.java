@@ -8,16 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
+import com.raizlabs.android.dbflow.sql.language.Delete;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Timestamp;
-import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.example.franks.tipcalc.R;
 import com.example.franks.tipcalc.entity.TipRecord;
 import com.example.franks.tipcalc.utils.TipUtils;
+
+import static com.example.franks.tipcalc.entity.TipRecord_Table.timestamp;
 
 public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
 
@@ -61,12 +63,13 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
 
     public void  add(TipRecord record){
         record.save();
-        dataset = new Select().from(TipRecord.class).queryList();
+        dataset = new Select().from(TipRecord.class).orderBy(timestamp, false).queryList();
         notifyDataSetChanged();
     }
 
     public void clear() {
         dataset.clear();
+        Delete.table(TipRecord.class);
         notifyDataSetChanged();
     }
 
